@@ -8,7 +8,7 @@ __author__ = "Jose Antonio Navas"
 __copyright__ = "Copyright 2011, The QIIME Project"
 __credits__ = ["Jose Antonio Navas"]
 __license__ = "GPL"
-__version__ = "1.4.0-dev"
+__version__ = "0.0.1-dev"
 __maintainer__ = "Jose Antonio Navas"
 __email__ = "josenavasmolina@gmail.com"
 __status__ = "Development"
@@ -48,7 +48,7 @@ LIST_DICT_TO_STRING_FUNCTION = """
 
 class OptionInfo(object):
 	"""
-		Class for a what an option is from Galaxy's XML point of view
+		Class which represents an option from Galaxy's XML point of view
 
 		A cogent.util.option_parsing.CogentOption must be given
 	"""
