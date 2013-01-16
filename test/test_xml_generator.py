@@ -9,7 +9,7 @@ __maintainer__ = "Jose Antonio Navas Molina"
 __email__ = "josenavasmolina@gmail.com"
 __status__ = "Development"
 
-from qiime.pycogent_backports.option_parsing import make_option
+from qiime.util import make_option
 from cogent.util.unit_test import TestCase, main
 from xml.dom.minidom import Document
 from xml_generator import OptionInfo, ScriptInfo, CommandGenerator, XmlOptionsAttributesGenerator, generate_xml_string, make_xml
@@ -876,7 +876,7 @@ multiple_select_XML_script_info['script_description'] = "An example of script in
 multiple_select_XML_script_info['script_usage'] = [("Example", "Field not used", "%prog ")]
 multiple_select_XML_script_info['output_description'] = "Field not used"
 multiple_select_XML_script_info['required_options'] = [
-	make_option('-c', '--choice', type='multiple_choice', mchoices=['choice1', 'choice2', 'choice3'],
+	make_option('-c', '--choice', type='choice', choices=['choice1', 'choice2', 'choice3'], action='append',
 		help="An example of required choice option")
 ]
 multiple_select_XML_script_info['optional_options'] = []
@@ -948,15 +948,9 @@ exp_select_1 = """<?xml version="1.0" ?>
 <tool>
 	<inputs>
 		<param label="An example of required choice option" name="choice" optional="False" type="select">
-			<option value="choice1">
-				choice1
-			</option>
-			<option value="choice2">
-				choice2
-			</option>
-			<option value="choice3">
-				choice3
-			</option>
+			<option value="choice1">choice1</option>
+			<option value="choice2">choice2</option>
+			<option value="choice3">choice3</option>
 		</param>
 	</inputs>
 	<outputs/>
@@ -967,29 +961,15 @@ exp_select_2 = """<?xml version="1.0" ?>
 <tool>
 	<inputs>
 		<param label="An example of required choice option" name="choice" optional="False" type="select">
-			<option value="choice1">
-				choice1
-			</option>
-			<option value="choice2">
-				choice2
-			</option>
-			<option value="choice3">
-				choice3
-			</option>
+			<option value="choice1">choice1</option>
+			<option value="choice2">choice2</option>
+			<option value="choice3">choice3</option>
 		</param>
 		<param label="An example of optional choice option" name="select" optional="True" type="select">
-			<option selected="True" value="None">
-				Selection is Optional
-			</option>
-			<option value="choice1">
-				choice1
-			</option>
-			<option value="choice2">
-				choice2
-			</option>
-			<option value="choice3">
-				choice3
-			</option>
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="choice1">choice1</option>
+			<option value="choice2">choice2</option>
+			<option value="choice3">choice3</option>
 		</param>
 	</inputs>
 	<outputs/>
@@ -1000,15 +980,9 @@ exp_multiple_select = """<?xml version="1.0" ?>
 <tool>
 	<inputs>
 		<param label="An example of required choice option" multiple="True" name="choice" optional="False" type="select">
-			<option value="choice1">
-				choice1
-			</option>
-			<option value="choice2">
-				choice2
-			</option>
-			<option value="choice3">
-				choice3
-			</option>
+			<option value="choice1">choice1</option>
+			<option value="choice2">choice2</option>
+			<option value="choice3">choice3</option>
 		</param>
 	</inputs>
 	<outputs/>
@@ -1083,18 +1057,10 @@ exp_update = """<?xml version="1.0" ?>
 	<inputs>
 		<param label="An example of existing_path option" name="input_fp" type="data"/>
 		<param label="An example of choice option" name="choice_ex" optional="True" type="select">
-			<option selected="True" value="None">
-				Selection is Optional
-			</option>
-			<option value="choice1">
-				choice1
-			</option>
-			<option value="choice2">
-				choice2
-			</option>
-			<option value="choice3">
-				choice3
-			</option>
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="choice1">choice1</option>
+			<option value="choice2">choice2</option>
+			<option value="choice3">choice3</option>
 		</param>
 		<repeat name="input_files_repeat_ex" optional="True" title="repeat_ex">
 			<param label="An example of existing_filepaths option" name="additional_input" type="data"/>
@@ -1108,14 +1074,11 @@ exp_update = """<?xml version="1.0" ?>
 
 exp_full_xml ="""<?xml version="1.0" ?>
 <tool id="example_script" name="example script" version="1.4.0-dev">
-	<description>
-		An example of brief description
-	</description>
+	<description>An example of brief description</description>
 	<requirements>
 		<requirement type="package">qiime</requirement>
 	</requirements>
-	<command>
-		uncompress_tgz.py -i $input_fp -o example_script_input;
+	<command>uncompress_tgz.py -i $input_fp -o example_script_input;
 example_script.py -i example_script_input -o example_script_output
 #if str($choice_ex) != 'None':
  -c $choice_ex
@@ -1134,23 +1097,14 @@ example_script.py -i example_script_input -o example_script_output
 #end if
 ;
 compress_path.py -i example_script_output -o $output_fp
-
-	</command>
+</command>
 	<inputs>
 		<param label="An example of existing_path option" name="input_fp" type="data"/>
 		<param label="An example of choice option" name="choice_ex" optional="True" type="select">
-			<option selected="True" value="None">
-				Selection is Optional
-			</option>
-			<option value="choice1">
-				choice1
-			</option>
-			<option value="choice2">
-				choice2
-			</option>
-			<option value="choice3">
-				choice3
-			</option>
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="choice1">choice1</option>
+			<option value="choice2">choice2</option>
+			<option value="choice3">choice3</option>
 		</param>
 		<repeat name="input_files_repeat_ex" optional="True" title="repeat_ex">
 			<param label="An example of existing_filepaths option" name="additional_input" type="data"/>
@@ -1159,9 +1113,7 @@ compress_path.py -i example_script_output -o $output_fp
 	<outputs>
 		<data format="tgz" name="output_fp"/>
 	</outputs>
-	<help>
-		An example of script description
-	</help>
+	<help>An example of script description</help>
 </tool>
 """
 

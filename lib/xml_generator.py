@@ -24,7 +24,6 @@ type_converter['int'] = "integer"
 type_converter['long'] = "float"
 type_converter['float'] = "float"
 type_converter['choice'] = "select"
-type_converter['multiple_choice'] = "multiple_select"
 type_converter['existing_filepath'] = "data"
 type_converter['existing_filepaths'] = "repeat"
 type_converter['existing_dirpath'] = "input_dir"
@@ -75,10 +74,11 @@ class OptionInfo(object):
 		else:
 			self.default = str(option.default) if option.default.__class__ != tuple else None
 
+		# If the option is choice, we have to check if it is multiple or single
 		if self.type == "select":
 			self.choices = option.choices
-		elif self.type == "multiple_select":
-			self.choices = option.mchoices
+			if option.action == 'append':
+				self.type = "multiple_select"
 		else:
 			self.choices = None
 
