@@ -4,17 +4,15 @@
 
 add_alpha_to_mapping_file.py
 add_qiime_labels.py
-
 # add_taxa.py -- This script is deprecated, so Galaxt GUI is not needed
-
 adjust_seq_orientation.py
-align_seqs.py
-alpha_diversity.py
-alpha_rarefaction.py
-ampliconnoise.py
-assign_taxonomy.py
-beta_diversity.py
-beta_diversity_through_plots.py
+align_seqs.py	blast_db
+alpha_diversity.py	show_metrics
+alpha_rarefaction.py	force,print_only
+ampliconnoise.py	force,print_only
+assign_taxonomy.py	blast_db
+beta_diversity.py	show_metrics
+beta_diversity_through_plots.py	force,print_only
 beta_significance.py
 blast_wrapper.py
 categorized_dist_scatterplot.py
@@ -32,14 +30,14 @@ consensus_tree.py
 convert_fastaqual_fastq.py
 convert_otu_table_to_unifrac_sample_mapping.py
 convert_unifrac_sample_mapping_to_otu_table.py
-core_qiime_analyses.py
+core_qiime_analyses.py	force
 count_seqs.py
 check_id_map.py
 demultiplex_fasta.py
-denoiser_preprocess.py
-denoiser.py
-denoiser_worker.py
-denoise_wrapper.py
+# denoiser_preprocess.py -- called from denoise_wrapper.py, not needed on Galaxy
+# denoiser.py -- called from denoise_wrapper.py, not needed on Galaxy
+# denoiser_worker.py -- called from denoise_wrapper.py, not needed on Galaxy
+denoise_wrapper.py	force_overwrite
 detrend.py
 dissimilarity_mtx_stats.py
 distance_matrix_from_mapping.py
@@ -56,31 +54,31 @@ filter_samples_from_otu_table.py
 filter_taxa_from_otu_table.py
 filter_tree.py
 fix_arb_fasta.py
-identify_chimeric_seqs.py
-identify_missing_files.py
+identify_chimeric_seqs.py	blast_db
+# identify_missing_files.py -- not needed on Galaxy
 inflate_denoiser_output.py
 insert_seqs_into_tree.py
-jackknifed_beta_diversity.py
+jackknifed_beta_diversity.py	force,print_only
 load_remote_mapping_file.py
 make_2d_plots.py
 make_3d_plots.py
 make_bootstrapped_tree.py
 make_distance_boxplots.py
 make_distance_comparison_plots.py
-make_distance_histograms.py
+make_distance_histograms.py	monte_carlo
 make_fastq.py
 make_library_id_lists.py
 make_otu_heatmap_html.py
 make_otu_heatmap.py
 make_otu_network.py
 make_otu_table.py
-make_per_library_sff.py
+make_per_library_sff.py	sfffile_path
 make_phylogeny.py
 make_prefs_file.py
-make_qiime_py_file.py
-make_qiime_rst_file.py
-make_rarefaction_plots.py
-make_tep.py
+# make_qiime_py_file.py -- not needed on Galaxy
+# make_qiime_rst_file.py -- not needed on Galaxy
+make_rarefaction_plots.py	webpage
+# make_tep.py -- relies on absolute paths, won't work on Galaxy
 map_reads_to_reference.py
 merge_mapping_files.py
 merge_otu_maps.py
@@ -90,29 +88,29 @@ multiple_rarefactions.py
 neighbor_joining.py
 nmds.py
 otu_category_significance.py
-parallel_align_seqs_pynast.py
-parallel_alpha_diversity.py
-parallel_assign_taxonomy_blast.py
-parallel_assign_taxonomy_rdp.py
-parallel_beta_diversity.py
-parallel_blast.py
-parallel_identify_chimeric_seqs.py
-parallel_map_reads_to_reference.py
-parallel_multiple_rarefactions.py
-parallel_pick_otus_blast.py
-parallel_pick_otus_trie.py
-parallel_pick_otus_uclust_ref.py
+parallel_align_seqs_pynast.py	blast_db,suppress_submit_jobs,cluster_jobs_fp
+parallel_alpha_diversity.py	suppress_submit_jobs,cluster_jobs_fp
+parallel_assign_taxonomy_blast.py	blast_db,blastmat_dir,suppress_submit_jobs,cluster_jobs_fp
+parallel_assign_taxonomy_rdp.py	rdp_classifier_fp,suppress_submit_jobs,cluster_jobs_fp
+parallel_beta_diversity.py	suppress_submit_jobs,cluster_jobs_fp
+parallel_blast.py	suppress_submit_jobs,cluster_jobs_fp
+parallel_identify_chimeric_seqs.py	blast_db,suppress_submit_jobs,cluster_jobs_fp
+parallel_map_reads_to_reference.py	suppress_submit_jobs,cluster_jobs_fp
+parallel_multiple_rarefactions.py	suppress_submit_jobs,cluster_jobs_fp
+parallel_pick_otus_blast.py	blast_db,suppress_submit_jobs,cluster_jobs_fp
+parallel_pick_otus_trie.py	suppress_submit_jobs,cluster_jobs_fp
+parallel_pick_otus_uclust_ref.py	suppress_submit_jobs,cluster_jobs_fp
 per_library_stats.py
-pick_otus.py
-pick_otus_through_otu_table.py
-pick_reference_otus_through_otu_table.py
+pick_otus.py	blast_db,de_novo_chimera_detection,reference_chimera_detection,cluster_size_filtering
+pick_otus_through_otu_table.py	force,print_only
+pick_reference_otus_through_otu_table.py	force,print_only
 pick_rep_set.py
-pick_subsampled_reference_otus_through_otu_table.py
+pick_subsampled_reference_otus_through_otu_table.py	force
 plot_rank_abundance_graph.py
 plot_semivariogram.py
 plot_taxa_summary.py
-poller_example.py
-poller.py
+# poller_example.py -- not needed on Galaxy
+# poller.py -- not needed on Galaxy
 principal_coordinates.py
 print_metadata_stats.py
 print_qiime_config.py
@@ -123,26 +121,26 @@ quality_scores_plot.py
 relatedness.py
 shared_phylotypes.py
 simsam.py
-single_rarefaction.py
+single_rarefaction.py	lineages_included
 sort_otu_table.py
 split_fasta_on_sample_ids.py
-split_libraries_fastq.py
-split_libraries.py
+split_libraries_fastq.py	last_bad_quality_char
+split_libraries.py	remove_unassigned
 split_otu_table_by_taxonomy.py
 split_otu_table.py
-start_parallel_jobs.py
-start_parallel_jobs_sc.py
-start_parallel_jobs_torque.py
+# start_parallel_jobs.py -- not needed on Galaxy
+# start_parallel_jobs_sc.py -- not needed on Galaxy
+# start_parallel_jobs_torque.py -- not needed on Galaxy
 submit_to_mgrast.py
 subsample_fasta.py
 summarize_otu_by_cat.py
-summarize_taxa.py
-summarize_taxa_through_plots.py
-supervised_learning.py
+summarize_taxa.py	relative_abundance
+summarize_taxa_through_plots.py	force,print_only
+supervised_learning.py	force
 transform_coordinate_matrices.py
 tree_compare.py
 trflp_file_to_otu_table.py
-trim_sff_primers.py
+trim_sff_primers.py	sfffile_path,sffinfo_path
 truncate_fasta_qual_files.py
 truncate_reverse_primer.py
 unweight_fasta.py
