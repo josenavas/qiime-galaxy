@@ -43,7 +43,7 @@ dissimilarity_mtx_stats.py
 distance_matrix_from_mapping.py
 ec2Clean
 ec2Dispatch
-exclude_seqs_by_blast.py
+exclude_seqs_by_blast.py	working_dir
 extract_seqs_by_sample_id.py
 filter_alignment.py
 filter_distance_matrix.py
